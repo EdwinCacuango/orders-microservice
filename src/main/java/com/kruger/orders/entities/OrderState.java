@@ -1,12 +1,13 @@
 package com.kruger.orders.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.Data;
+import com.kruger.orders.entities.Order;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "order_states")
@@ -23,8 +24,19 @@ public class OrderState {
     @NotEmpty(message = "Address shouldn't be empty")
     private String description;
 
+    @OneToMany(mappedBy = "order_states")
+    List< Order> orders = new ArrayList<>();
+
     public Long getId() {
         return id;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public void setId(Long id) {

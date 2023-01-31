@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "associates")
@@ -25,4 +27,8 @@ public class Associate {
     @NotEmpty(message = "Address shouldn't be empty")
     @NotNull(message = "Address shouldn't be null")
     private String address;
+
+    @OneToMany(mappedBy = "order_states")
+    List<Order> orders = new ArrayList<>();
+
 }

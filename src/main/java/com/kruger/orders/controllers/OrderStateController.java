@@ -15,18 +15,18 @@ public class OrderStateController {
     @Autowired
     private OrderStateService service;
 
-    @GetMapping("/")
+    @GetMapping("/order-state")
     public List<OrderState> getAll(){
         return service.getAll();
     }
 
-    @PostMapping
+    @PostMapping("/order-state")
     @ResponseStatus(HttpStatus.CREATED)
     public OrderState save(@RequestBody OrderState state){
         return service.save(state);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/order-state/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         Optional<OrderState> o = service.findById(id);
         if(o.isPresent()){
